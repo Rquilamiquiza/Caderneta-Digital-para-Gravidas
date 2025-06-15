@@ -1,0 +1,2007 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caderneta Digital de Grávidas</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js para gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Estilos personalizados */
+        .bg-maternal {
+            background: linear-gradient(135deg, #FF69B4, #FFB6C1);
+        }
+        .text-maternal {
+            color: #FF69B4;
+        }
+        .border-maternal {
+            border-color: #FF69B4;
+        }
+        .btn-maternal {
+            background: linear-gradient(135deg, #FF69B4, #FFB6C1);
+            transition: all 0.3s ease;
+        }
+        .btn-maternal:hover {
+            background: linear-gradient(135deg, #FF1493, #FF69B4);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 105, 180, 0.3);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        .auth-container {
+            background: linear-gradient(135deg, #FFF0F5, #FFE4E1);
+        }
+        
+        /* Animações modernas */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+        
+        .animate-fadeInUp {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        .animate-slideInRight {
+            animation: slideInRight 0.6s ease-out;
+        }
+        
+        .animate-pulse-gentle {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Gradientes modernos */
+        .gradient-pink {
+            background: linear-gradient(135deg, #FF6B9D, #C44569);
+        }
+        
+        .gradient-purple {
+            background: linear-gradient(135deg, #A55EEA, #7B68EE);
+        }
+        
+        .gradient-blue {
+            background: linear-gradient(135deg, #4FACFE, #00F2FE);
+        }
+        
+        .gradient-green {
+            background: linear-gradient(135deg, #43E97B, #38F9D7);
+        }
+        
+        /* Efeitos de hover modernos */
+        .modern-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .modern-card:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Botões modernos */
+        .btn-modern {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-modern::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-modern:hover::before {
+            left: 100%;
+        }
+        
+        /* Inputs modernos */
+        .input-modern {
+            transition: all 0.3s ease;
+            border: 2px solid #e2e8f0;
+        }
+        
+        .input-modern:focus {
+            border-color: #FF69B4;
+            box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        /* Navegação moderna */
+        .nav-modern {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid rgba(255, 105, 180, 0.1);
+        }
+        
+        /* Loading spinner */
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #FF69B4;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Scrollbar personalizada */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #FF69B4, #FFB6C1);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #FF1493, #FF69B4);
+        }
+        
+        /* Efeitos de texto */
+        .text-gradient {
+            background: linear-gradient(135deg, #FF69B4, #FF1493);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Sombras modernas */
+        .shadow-modern {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), 0 1px 8px rgba(0, 0, 0, 0.06);
+        }
+        
+        .shadow-modern-hover:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Cabeçalho -->
+    <header class="bg-white shadow-lg">
+        <div class="container mx-auto px-4 py-6 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <i class="fas fa-baby text-maternal text-3xl"></i>
+                <h1 class="text-2xl font-bold text-maternal">Caderneta Digital de Grávidas</h1>
+            </div>
+            <nav id="main-nav">
+                <!-- Navegação será atualizada dinamicamente -->
+            </nav>
+        </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Seção de Login -->
+        <section id="section-login" class="mb-12">
+            <div class="max-w-md mx-auto auth-container rounded-lg shadow-lg p-8">
+                <div class="text-center mb-6">
+                    <i class="fas fa-user-circle text-maternal text-5xl mb-4"></i>
+                    <h2 class="text-2xl font-bold text-maternal">Entrar no Sistema</h2>
+                    <p class="text-gray-600">Faça login para acessar sua conta</p>
+                </div>
+                <form id="form-login" class="space-y-4">
+                    <div>
+                        <label for="login-username" class="block text-sm font-medium text-gray-700 mb-2">
+                            <i class="fas fa-user mr-2"></i>Usuário
+                        </label>
+                        <input type="text" id="login-username" name="username" required 
+                               class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-maternal focus:ring focus:ring-maternal focus:ring-opacity-50 transition">
+                    </div>
+                    <div>
+                        <label for="login-password" class="block text-sm font-medium text-gray-700 mb-2">
+                            <i class="fas fa-lock mr-2"></i>Senha
+                        </label>
+                        <input type="password" id="login-password" name="password" required 
+                               class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-maternal focus:ring focus:ring-maternal focus:ring-opacity-50 transition">
+                    </div>
+                    <button type="submit" class="w-full btn-maternal text-white py-3 rounded-lg font-medium">
+                        <i class="fas fa-sign-in-alt mr-2"></i>Entrar
+                    </button>
+                </form>
+                <div class="text-center mt-6">
+                    <p class="text-gray-600">Não tem uma conta? 
+                        <a href="#" id="link-register" class="text-maternal hover:underline font-medium">Cadastre-se aqui</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Registro -->
+        <section id="section-register" class="mb-12 hidden">
+            <div class="max-w-md mx-auto auth-container rounded-lg shadow-lg p-8">
+                <div class="text-center mb-6">
+                    <i class="fas fa-user-plus text-maternal text-5xl mb-4"></i>
+                    <h2 class="text-2xl font-bold text-maternal">Criar Conta</h2>
+                    <p class="text-gray-600">Cadastre-se para começar a usar o sistema</p>
+                </div>
+                <form id="form-register" class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="register-first-name" class="block text-sm font-medium text-gray-700 mb-2">
+                                <i class="fas fa-user mr-2"></i>Nome
+                            </label>
+                            <input type="text" id="register-first-name" name="first_name" required 
+                                   class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-maternal focus:ring focus:ring-maternal focus:ring-opacity-50 transition">
+                        </div>
+                        <div>
+                            <label for="register-last-name" class="block text-sm font-medium text-gray-700 mb-2">
+                                <i class="fas fa-user mr-2"></i>Sobrenome
+                            </label>
+                            <input type="text" id="register-last-name" name="last_name" required 
+                                   class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-maternal focus:ring focus:ring-maternal focus:ring-opacity-50 transition">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="register-username" class="block text-sm font-medium text-gray-700 mb-2">
+                            <i class="fas fa-at mr-2"></i>Nome de Usuário
+                        </label>
+                        <input type="text" id="register-username" name="username" required 
+                               class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-maternal focus:ring focus:ring-maternal focus:ring-opacity-50 transition">
+                    </div>
+                    <div>
+                        <label for="register-email" class="block text-sm font-medium text-gray-700 mb-2">
+                            <i class="fas fa-envelope mr-2"></i>E-mail
+                        </label>
+                        <input type="email" id="register-email" name="email" required 
+                               class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-maternal focus:ring focus:ring-maternal focus:ring-opacity-50 transition">
+                    </div>
+                    <div>
+                        <label for="register-password" class="block text-sm font-medium text-gray-700 mb-2">
+                            <i class="fas fa-lock mr-2"></i>Senha
+                        </label>
+                        <input type="password" id="register-password" name="password" required minlength="8"
+                               class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-maternal focus:ring focus:ring-maternal focus:ring-opacity-50 transition">
+                    </div>
+                    <div>
+                        <label for="register-password-confirm" class="block text-sm font-medium text-gray-700 mb-2">
+                            <i class="fas fa-lock mr-2"></i>Confirmar Senha
+                        </label>
+                        <input type="password" id="register-password-confirm" name="password_confirm" required minlength="8"
+                               class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-maternal focus:ring focus:ring-maternal focus:ring-opacity-50 transition">
+                    </div>
+                    <button type="submit" class="w-full btn-maternal text-white py-3 rounded-lg font-medium">
+                        <i class="fas fa-user-plus mr-2"></i>Criar Conta
+                    </button>
+                </form>
+                <div class="text-center mt-6">
+                    <p class="text-gray-600">Já tem uma conta? 
+                        <a href="#" id="link-login" class="text-maternal hover:underline font-medium">Faça login aqui</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Inicial (Dashboard) -->
+        <section id="section-home" class="mb-12 hidden">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <!-- Card de Boas-vindas -->
+                <div class="md:col-span-2 bg-white rounded-lg shadow-lg p-8 card-hover">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-heart text-maternal text-3xl mr-4"></i>
+                        <div>
+                            <h2 class="text-2xl font-bold text-maternal">Bem-vinda!</h2>
+                            <p class="text-gray-600" id="welcome-message">Gerencie sua caderneta digital</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-6">Um sistema completo para acompanhamento da sua gestação com segurança e praticidade.</p>
+                    <button id="btn-cadastrar" class="btn-maternal text-white px-6 py-3 rounded-lg font-medium">
+                        <i class="fas fa-plus mr-2"></i>Cadastrar Nova Grávida
+                    </button>
+                </div>
+                
+                <!-- Card de Estatísticas -->
+                <div class="bg-white rounded-lg shadow-lg p-6 card-hover">
+                    <div class="text-center">
+                        <i class="fas fa-chart-line text-maternal text-4xl mb-4"></i>
+                        <h3 class="text-lg font-bold text-gray-800 mb-2">Estatísticas</h3>
+                        <div class="space-y-2">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Grávidas:</span>
+                                <span class="font-bold text-maternal" id="stats-gravidas">0</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Consultas:</span>
+                                <span class="font-bold text-maternal" id="stats-consultas">0</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Exames:</span>
+                                <span class="font-bold text-maternal" id="stats-exames">0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Listagem de Grávidas -->
+        <section id="section-gravidas" class="mb-12 hidden">
+            <div class="bg-white rounded-lg shadow-lg p-8">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-maternal">
+                        <i class="fas fa-users mr-3"></i>Grávidas Cadastradas
+                    </h2>
+                    <button id="btn-nova-gravida" class="btn-maternal text-white px-4 py-2 rounded-lg">
+                        <i class="fas fa-plus mr-2"></i>Nova Grávida
+                    </button>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white">
+                        <thead>
+                            <tr class="bg-gray-50">
+                                <th class="py-3 px-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <i class="fas fa-user mr-2"></i>Nome
+                                </th>
+                                <th class="py-3 px-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <i class="fas fa-id-card mr-2"></i>Número do BI
+                                </th>
+                                <th class="py-3 px-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <i class="fas fa-calendar mr-2"></i>Última Menstruação
+                                </th>
+                                <th class="py-3 px-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <i class="fas fa-baby mr-2"></i>Provável Parto
+                                </th>
+                                <th class="py-3 px-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <i class="fas fa-cogs mr-2"></i>Ações
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="gravidas-list" class="divide-y divide-gray-200">
+                            <!-- Dados serão carregados via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Cadastro de Grávida -->
+        <section id="section-cadastro" class="mb-12 hidden">
+            <div class="bg-white rounded-lg shadow-lg p-8">
+                <h2 class="text-2xl font-bold text-maternal mb-6">
+                    <i class="fas fa-user-plus mr-3"></i>Cadastro de Grávida
+                </h2>
+                <form id="form-gravida" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="nome" class="block text-sm font-medium text-gray-700 mb-2">
+                                <i class="fas fa-user mr-2"></i>Nome Completo
+                            </label>
+                            <input type="text" id="nome" name="nome" required 
+                                   class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-maternal focus:ring focus:ring-maternal focus:ring-opacity-50 transition">
+                        </div>
+                        <div>
+                            <label for="cpf" class="block text-sm font-medium text-gray-700 mb-2">
+                                <i class="fas fa-id-card mr-2"></i>Número do BI
+                            </label>
+                            <input type="text" id="cpf" name="cpf" required 
+                                   class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-maternal focus:ring focus:ring-maternal focus:ring-opacity-50 transition">
+                        </div>
+                        <div>
+                            <label for="data_nascimento" class="block text-sm font-medium text-gray-700 mb-2">
+                                <i class="fas fa-birthday-cake mr-2"></i>Data de Nascimento
+                            </label>
+                            <input type="date" id="data_nascimento" name="data_nascimento" required 
+                                   class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-maternal focus:ring focus:ring-maternal focus:ring-opacity-50 transition">
+                        </div>
+                        <div>
+                            <label for="data_ultima_menstruacao" class="block text-sm font-medium text-gray-700 mb-2">
+                                <i class="fas fa-calendar-alt mr-2"></i>Data da Última Menstruação
+                            </label>
+                            <input type="date" id="data_ultima_menstruacao" name="data_ultima_menstruacao" required 
+                                   class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-maternal focus:ring focus:ring-maternal focus:ring-opacity-50 transition">
+                        </div>
+                        <div>
+                            <label for="telefone" class="block text-sm font-medium text-gray-700 mb-2">
+                                <i class="fas fa-phone mr-2"></i>Telefone
+                            </label>
+                            <input type="tel" id="telefone" name="telefone" required 
+                                   class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-maternal focus:ring focus:ring-maternal focus:ring-opacity-50 transition">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                                <i class="fas fa-envelope mr-2"></i>E-mail
+                            </label>
+                            <input type="email" id="email" name="email" 
+                                   class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-maternal focus:ring focus:ring-maternal focus:ring-opacity-50 transition">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="endereco" class="block text-sm font-medium text-gray-700 mb-2">
+                            <i class="fas fa-map-marker-alt mr-2"></i>Endereço
+                        </label>
+                        <textarea id="endereco" name="endereco" required rows="3"
+                                  class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-maternal focus:ring focus:ring-maternal focus:ring-opacity-50 transition"></textarea>
+                    </div>
+                    <div class="flex justify-end space-x-4">
+                        <button type="button" id="btn-cancelar-cadastro" class="px-6 py-3 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition">
+                            <i class="fas fa-times mr-2"></i>Cancelar
+                        </button>
+                        <button type="submit" class="btn-maternal text-white px-6 py-3 rounded-lg">
+                            <i class="fas fa-save mr-2"></i>Cadastrar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Seção de Detalhes da Grávida -->
+        <section id="section-detalhes" class="mb-12 hidden">
+            <div class="bg-white rounded-lg shadow-lg p-8">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-maternal">
+                        <i class="fas fa-user-circle mr-3"></i>Detalhes da Grávida
+                    </h2>
+                    <button id="btn-voltar-lista" class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition">
+                        <i class="fas fa-arrow-left mr-2"></i>Voltar
+                    </button>
+                </div>
+                <div id="detalhes-gravida" class="mb-8">
+                    <!-- Dados serão carregados via JavaScript -->
+                </div>
+                
+                <!-- Seção de Consultas -->
+                <div class="border-t border-gray-200 pt-8 mb-8">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-bold text-maternal">
+                            <i class="fas fa-stethoscope mr-2"></i>Consultas
+                        </h3>
+                        <button id="btn-nova-consulta" class="btn-maternal text-white px-4 py-2 rounded-lg">
+                            <i class="fas fa-plus mr-2"></i>Nova Consulta
+                        </button>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full bg-white">
+                            <thead>
+                                <tr class="bg-gray-50">
+                                    <th class="py-2 px-4 text-left text-xs font-medium text-gray-500 uppercase">Data</th>
+                                    <th class="py-2 px-4 text-left text-xs font-medium text-gray-500 uppercase">Local</th>
+                                    <th class="py-2 px-4 text-left text-xs font-medium text-gray-500 uppercase">Profissional</th>
+                                    <th class="py-2 px-4 text-left text-xs font-medium text-gray-500 uppercase">Peso</th>
+                                    <th class="py-2 px-4 text-left text-xs font-medium text-gray-500 uppercase">Pressão</th>
+                                </tr>
+                            </thead>
+                            <tbody id="consultas-list" class="divide-y divide-gray-200">
+                                <!-- Dados serão carregados via JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Seção de Exames -->
+                <div class="border-t border-gray-200 pt-8">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-bold text-maternal">
+                            <i class="fas fa-flask mr-2"></i>Exames
+                        </h3>
+                        <button id="btn-novo-exame" class="btn-maternal text-white px-4 py-2 rounded-lg">
+                            <i class="fas fa-plus mr-2"></i>Novo Exame
+                        </button>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full bg-white">
+                            <thead>
+                                <tr class="bg-gray-50">
+                                    <th class="py-2 px-4 text-left text-xs font-medium text-gray-500 uppercase">Data</th>
+                                    <th class="py-2 px-4 text-left text-xs font-medium text-gray-500 uppercase">Tipo</th>
+                                    <th class="py-2 px-4 text-left text-xs font-medium text-gray-500 uppercase">Resultado</th>
+                                </tr>
+                            </thead>
+                            <tbody id="exames-list" class="divide-y divide-gray-200">
+                                <!-- Dados serão carregados via JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Relatórios -->
+        <section id="section-relatorios" class="mb-12 hidden">
+            <div class="bg-white rounded-lg shadow-lg p-8">
+                <h2 class="text-2xl font-bold text-maternal mb-6">
+                    <i class="fas fa-chart-bar mr-3"></i>Relatórios e Estatísticas
+                </h2>
+                
+                <!-- Filtros de Período -->
+                <div class="bg-gray-50 rounded-lg p-4 mb-6">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Data Início</label>
+                            <input type="date" id="filtro-data-inicio" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:border-maternal focus:ring focus:ring-maternal focus:ring-opacity-50">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Data Fim</label>
+                            <input type="date" id="filtro-data-fim" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:border-maternal focus:ring focus:ring-maternal focus:ring-opacity-50">
+                        </div>
+                        <div class="flex items-end">
+                            <button id="btn-aplicar-filtro" class="btn-maternal text-white px-4 py-2 rounded-lg">
+                                <i class="fas fa-filter mr-2"></i>Aplicar Filtro
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cards de Estatísticas Gerais -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-gradient-to-r from-pink-500 to-pink-600 rounded-lg p-6 text-white">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-pink-100">Total de Grávidas</p>
+                                <p class="text-2xl font-bold" id="rel-total-gravidas">0</p>
+                            </div>
+                            <i class="fas fa-users text-3xl text-pink-200"></i>
+                        </div>
+                    </div>
+                    <div class="bg-gradient-to-r from-purple-500 to-purple-600 rounded-lg p-6 text-white">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-purple-100">Total de Consultas</p>
+                                <p class="text-2xl font-bold" id="rel-total-consultas">0</p>
+                            </div>
+                            <i class="fas fa-stethoscope text-3xl text-purple-200"></i>
+                        </div>
+                    </div>
+                    <div class="bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg p-6 text-white">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-blue-100">Total de Exames</p>
+                                <p class="text-2xl font-bold" id="rel-total-exames">0</p>
+                            </div>
+                            <i class="fas fa-flask text-3xl text-blue-200"></i>
+                        </div>
+                    </div>
+                    <div class="bg-gradient-to-r from-green-500 to-green-600 rounded-lg p-6 text-white">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-green-100">Partos Próximos</p>
+                                <p class="text-2xl font-bold" id="rel-partos-proximos">0</p>
+                            </div>
+                            <i class="fas fa-baby text-3xl text-green-200"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gráficos -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                    <!-- Gráfico de Grávidas por Mês -->
+                    <div class="bg-white border border-gray-200 rounded-lg p-6">
+                        <h3 class="text-lg font-bold text-gray-800 mb-4">
+                            <i class="fas fa-chart-line mr-2"></i>Grávidas Cadastradas por Mês
+                        </h3>
+                        <canvas id="chart-gravidas-mes" width="400" height="200"></canvas>
+                    </div>
+
+                    <!-- Gráfico de Consultas por Mês -->
+                    <div class="bg-white border border-gray-200 rounded-lg p-6">
+                        <h3 class="text-lg font-bold text-gray-800 mb-4">
+                            <i class="fas fa-chart-bar mr-2"></i>Consultas por Mês
+                        </h3>
+                        <canvas id="chart-consultas-mes" width="400" height="200"></canvas>
+                    </div>
+
+                    <!-- Gráfico de Tipos de Exames -->
+                    <div class="bg-white border border-gray-200 rounded-lg p-6">
+                        <h3 class="text-lg font-bold text-gray-800 mb-4">
+                            <i class="fas fa-chart-pie mr-2"></i>Tipos de Exames Mais Comuns
+                        </h3>
+                        <canvas id="chart-tipos-exames" width="400" height="200"></canvas>
+                    </div>
+
+                    <!-- Lista de Partos Próximos -->
+                    <div class="bg-white border border-gray-200 rounded-lg p-6">
+                        <h3 class="text-lg font-bold text-gray-800 mb-4">
+                            <i class="fas fa-calendar-check mr-2"></i>Partos Próximos (30 dias)
+                        </h3>
+                        <div id="lista-partos-proximos" class="space-y-3 max-h-64 overflow-y-auto">
+                            <!-- Lista será carregada via JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Relatórios Detalhados -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <button id="btn-rel-gravidas" class="bg-pink-50 border border-pink-200 rounded-lg p-4 text-left hover:bg-pink-100 transition">
+                        <i class="fas fa-users text-pink-500 text-2xl mb-2"></i>
+                        <h4 class="font-bold text-gray-800">Relatório de Grávidas</h4>
+                        <p class="text-sm text-gray-600">Grávidas cadastradas por período</p>
+                    </button>
+                    <button id="btn-rel-consultas" class="bg-purple-50 border border-purple-200 rounded-lg p-4 text-left hover:bg-purple-100 transition">
+                        <i class="fas fa-stethoscope text-purple-500 text-2xl mb-2"></i>
+                        <h4 class="font-bold text-gray-800">Relatório de Consultas</h4>
+                        <p class="text-sm text-gray-600">Consultas realizadas por período</p>
+                    </button>
+                    <button id="btn-rel-exames" class="bg-blue-50 border border-blue-200 rounded-lg p-4 text-left hover:bg-blue-100 transition">
+                        <i class="fas fa-flask text-blue-500 text-2xl mb-2"></i>
+                        <h4 class="font-bold text-gray-800">Relatório de Exames</h4>
+                        <p class="text-sm text-gray-600">Exames agrupados por tipo</p>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção da Página da Grávida -->
+        <section id="section-pagina-gravida" class="mb-12 hidden">
+            <div class="bg-white rounded-lg shadow-lg p-8">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-maternal">
+                        <i class="fas fa-heart mr-3"></i>Minha Gestação
+                    </h2>
+                    <div class="flex space-x-2">
+                        <button id="btn-associar-gravida" class="btn-maternal text-white px-4 py-2 rounded-lg hidden">
+                            <i class="fas fa-link mr-2"></i>Associar Grávida
+                        </button>
+                        <button id="btn-voltar-admin" class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition">
+                            <i class="fas fa-arrow-left mr-2"></i>Voltar ao Admin
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Dashboard da Grávida -->
+                <div id="dashboard-gravida" class="mb-8">
+                    <!-- Informações da Gestação -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div class="bg-gradient-to-r from-pink-100 to-pink-200 rounded-lg p-6">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-pink-700 font-medium">Semanas de Gestação</p>
+                                    <p class="text-2xl font-bold text-pink-800" id="semanas-gestacao">--</p>
+                                </div>
+                                <i class="fas fa-calendar-week text-3xl text-pink-600"></i>
+                            </div>
+                        </div>
+                        <div class="bg-gradient-to-r from-purple-100 to-purple-200 rounded-lg p-6">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-purple-700 font-medium">Data Provável do Parto</p>
+                                    <p class="text-lg font-bold text-purple-800" id="data-provavel-parto">--</p>
+                                </div>
+                                <i class="fas fa-baby text-3xl text-purple-600"></i>
+                            </div>
+                        </div>
+                        <div class="bg-gradient-to-r from-blue-100 to-blue-200 rounded-lg p-6">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-blue-700 font-medium">Próxima Consulta</p>
+                                    <p class="text-sm font-bold text-blue-800" id="proxima-consulta">--</p>
+                                </div>
+                                <i class="fas fa-stethoscope text-3xl text-blue-600"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Estatísticas Rápidas -->
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+                        <div class="bg-white border border-gray-200 rounded-lg p-4 text-center">
+                            <i class="fas fa-calendar-check text-green-500 text-2xl mb-2"></i>
+                            <p class="text-sm text-gray-600">Consultas Agendadas</p>
+                            <p class="text-xl font-bold text-gray-800" id="total-consultas-agendadas">0</p>
+                        </div>
+                        <div class="bg-white border border-gray-200 rounded-lg p-4 text-center">
+                            <i class="fas fa-bell text-orange-500 text-2xl mb-2"></i>
+                            <p class="text-sm text-gray-600">Lembretes Pendentes</p>
+                            <p class="text-xl font-bold text-gray-800" id="lembretes-pendentes">0</p>
+                        </div>
+                        <div class="bg-white border border-gray-200 rounded-lg p-4 text-center">
+                            <i class="fas fa-notes-medical text-blue-500 text-2xl mb-2"></i>
+                            <p class="text-sm text-gray-600">Registros de Controle</p>
+                            <p class="text-xl font-bold text-gray-800" id="total-controles">0</p>
+                        </div>
+                        <div class="bg-white border border-gray-200 rounded-lg p-4 text-center">
+                            <i class="fas fa-calendar-day text-purple-500 text-2xl mb-2"></i>
+                            <p class="text-sm text-gray-600">Consultas Esta Semana</p>
+                            <p class="text-xl font-bold text-gray-800" id="consultas-semana">0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navegação da Página da Grávida -->
+                <div class="border-b border-gray-200 mb-6">
+                    <nav class="flex space-x-8">
+                        <button id="tab-calendario" class="tab-button py-2 px-1 border-b-2 border-maternal text-maternal font-medium">
+                            <i class="fas fa-calendar-alt mr-2"></i>Calendário
+                        </button>
+                        <button id="tab-controles" class="tab-button py-2 px-1 border-b-2 border-transparent text-gray-500 hover:text-gray-700">
+                            <i class="fas fa-notes-medical mr-2"></i>Controles
+                        </button>
+                        <button id="tab-lembretes" class="tab-button py-2 px-1 border-b-2 border-transparent text-gray-500 hover:text-gray-700">
+                            <i class="fas fa-bell mr-2"></i>Lembretes
+                        </button>
+                    </nav>
+                </div>
+
+                <!-- Conteúdo das Abas -->
+                <div id="tab-content">
+                    <!-- Aba Calendário -->
+                    <div id="content-calendario" class="tab-content">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="text-xl font-bold text-gray-800">
+                                <i class="fas fa-calendar-alt mr-2"></i>Calendário de Consultas
+                            </h3>
+                            <button id="btn-nova-consulta" class="btn-maternal text-white px-4 py-2 rounded-lg">
+                                <i class="fas fa-plus mr-2"></i>Nova Consulta
+                            </button>
+                        </div>
+                        
+                        <!-- Lista de Consultas -->
+                        <div id="lista-consultas" class="space-y-4">
+                            <!-- Consultas serão carregadas via JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Aba Controles -->
+                    <div id="content-controles" class="tab-content hidden">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="text-xl font-bold text-gray-800">
+                                <i class="fas fa-notes-medical mr-2"></i>Controles de Gestação
+                            </h3>
+                            <button id="btn-novo-controle" class="btn-maternal text-white px-4 py-2 rounded-lg">
+                                <i class="fas fa-plus mr-2"></i>Novo Registro
+                            </button>
+                        </div>
+                        
+                        <!-- Filtros de Controle -->
+                        <div class="bg-gray-50 rounded-lg p-4 mb-6">
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Tipo de Registro</label>
+                                    <select id="filtro-tipo-controle" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:border-maternal focus:ring focus:ring-maternal focus:ring-opacity-50">
+                                        <option value="">Todos os tipos</option>
+                                        <option value="peso">Peso</option>
+                                        <option value="pressao">Pressão Arterial</option>
+                                        <option value="sintomas">Sintomas</option>
+                                        <option value="medicamentos">Medicamentos</option>
+                                        <option value="alimentacao">Alimentação</option>
+                                        <option value="exercicios">Exercícios</option>
+                                        <option value="humor">Humor/Bem-estar</option>
+                                        <option value="movimento_fetal">Movimento Fetal</option>
+                                        <option value="outros">Outros</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Data Início</label>
+                                    <input type="date" id="filtro-controle-inicio" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:border-maternal focus:ring focus:ring-maternal focus:ring-opacity-50">
+                                </div>
+                                <div class="flex items-end">
+                                    <button id="btn-filtrar-controles" class="btn-maternal text-white px-4 py-2 rounded-lg">
+                                        <i class="fas fa-filter mr-2"></i>Filtrar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Lista de Controles -->
+                        <div id="lista-controles" class="space-y-4">
+                            <!-- Controles serão carregados via JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Aba Lembretes -->
+                    <div id="content-lembretes" class="tab-content hidden">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="text-xl font-bold text-gray-800">
+                                <i class="fas fa-bell mr-2"></i>Meus Lembretes
+                            </h3>
+                            <button id="btn-novo-lembrete" class="btn-maternal text-white px-4 py-2 rounded-lg">
+                                <i class="fas fa-plus mr-2"></i>Novo Lembrete
+                            </button>
+                        </div>
+                        
+                        <!-- Lista de Lembretes -->
+                        <div id="lista-lembretes" class="space-y-4">
+                            <!-- Lembretes serão carregados via JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="bg-white shadow-inner py-6 mt-12">
+        <div class="container mx-auto px-4 text-center text-gray-500">
+            <p>&copy; 2025 Caderneta Digital de Grávidas. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Variáveis globais
+        let currentUser = null;
+        let currentGravidaId = null;
+        let authToken = localStorage.getItem('authToken');
+        
+        // Elementos DOM
+        const sectionLogin = document.getElementById('section-login');
+        const sectionRegister = document.getElementById('section-register');
+        const sectionHome = document.getElementById('section-home');
+        const sectionGravidas = document.getElementById('section-gravidas');
+        const sectionCadastro = document.getElementById('section-cadastro');
+        const sectionDetalhes = document.getElementById('section-detalhes');
+        const mainNav = document.getElementById('main-nav');
+        
+        // Formulários
+        const formLogin = document.getElementById('form-login');
+        const formRegister = document.getElementById('form-register');
+        const formGravida = document.getElementById('form-gravida');
+        
+        // Links e botões
+        const linkRegister = document.getElementById('link-register');
+        const linkLogin = document.getElementById('link-login');
+        const btnCadastrar = document.getElementById('btn-cadastrar');
+        const btnNovaGravida = document.getElementById('btn-nova-gravida');
+        const btnCancelarCadastro = document.getElementById('btn-cancelar-cadastro');
+        const btnVoltarLista = document.getElementById('btn-voltar-lista');
+        
+        // Listas
+        const gravidasList = document.getElementById('gravidas-list');
+        const consultasList = document.getElementById('consultas-list');
+        const examesList = document.getElementById('exames-list');
+
+        // Funções de autenticação
+        function updateNavigation() {
+            if (currentUser) {
+                mainNav.innerHTML = `
+                    <ul class="flex items-center space-x-4">
+                        <li><a href="#" class="text-gray-600 hover:text-maternal transition" id="nav-home">
+                            <i class="fas fa-home mr-1"></i>Início
+                        </a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-maternal transition" id="nav-gravidas">
+                            <i class="fas fa-users mr-1"></i>Grávidas
+                        </a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-maternal transition" id="nav-cadastro">
+                            <i class="fas fa-plus mr-1"></i>Cadastro
+                        </a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-maternal transition" id="nav-relatorios">
+                            <i class="fas fa-chart-bar mr-1"></i>Relatórios
+                        </a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-maternal transition" id="nav-pagina-gravida">
+                            <i class="fas fa-heart mr-1"></i>Minha Gestação
+                        </a></li>
+                        <li class="relative">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-gray-600">
+                                    <i class="fas fa-user-circle mr-1"></i>${currentUser.first_name || currentUser.username}
+                                </span>
+                                <button id="btn-logout" class="text-red-500 hover:text-red-700 transition">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                </button>
+                            </div>
+                        </li>
+                    </ul>
+                `;
+                
+                // Adicionar event listeners para navegação
+                document.getElementById('nav-home').addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showSection(sectionHome);
+                    loadStats();
+                });
+                
+                document.getElementById('nav-gravidas').addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showSection(sectionGravidas);
+                    loadGravidas();
+                });
+                
+                document.getElementById('nav-cadastro').addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showSection(sectionCadastro);
+                });
+                
+                document.getElementById('nav-relatorios').addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showSection(document.getElementById('section-relatorios'));
+                    loadRelatorios();
+                });
+                
+                document.getElementById('nav-pagina-gravida').addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showSection(document.getElementById('section-pagina-gravida'));
+                    loadPaginaGravida();
+                });
+                
+                document.getElementById('btn-logout').addEventListener('click', logout);
+            } else {
+                mainNav.innerHTML = `
+                    <ul class="flex space-x-4">
+                        <li><a href="#" class="text-gray-600 hover:text-maternal transition" id="nav-login">
+                            <i class="fas fa-sign-in-alt mr-1"></i>Entrar
+                        </a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-maternal transition" id="nav-register">
+                            <i class="fas fa-user-plus mr-1"></i>Cadastrar
+                        </a></li>
+                    </ul>
+                `;
+                
+                document.getElementById('nav-login').addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showSection(sectionLogin);
+                });
+                
+                document.getElementById('nav-register').addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showSection(sectionRegister);
+                });
+            }
+        }
+
+        function showSection(section) {
+            // Esconder todas as seções
+            [sectionLogin, sectionRegister, sectionHome, sectionGravidas, sectionCadastro, sectionDetalhes, document.getElementById('section-relatorios'), document.getElementById('section-pagina-gravida')].forEach(s => {
+                if (s) s.classList.add('hidden');
+            });
+            
+            // Mostrar seção específica
+            section.classList.remove('hidden');
+        }
+
+        function showMessage(message, type = 'success') {
+            // Criar elemento de mensagem
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `fixed top-4 right-4 p-4 rounded-lg shadow-lg z-50 ${
+                type === 'success' ? 'bg-green-500' : 'bg-red-500'
+            } text-white`;
+            messageDiv.innerHTML = `
+                <div class="flex items-center">
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'} mr-2"></i>
+                    ${message}
+                </div>
+            `;
+            
+            document.body.appendChild(messageDiv);
+            
+            // Remover após 3 segundos
+            setTimeout(() => {
+                messageDiv.remove();
+            }, 3000);
+        }
+
+        async function makeAuthenticatedRequest(url, options = {}) {
+            const token = localStorage.getItem('authToken');
+            if (!token) {
+                throw new Error('Token de autenticação não encontrado');
+            }
+
+            const headers = {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+                ...options.headers
+            };
+
+            const response = await fetch(url, {
+                ...options,
+                headers
+            });
+
+            if (response.status === 401) {
+                // Token expirado, fazer logout
+                logout();
+                throw new Error('Sessão expirada');
+            }
+
+            return response;
+        }
+
+        async function login(username, password) {
+            try {
+                const response = await fetch('/api/auth/login/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    currentUser = data.user;
+                    localStorage.setItem('authToken', data.tokens.access);
+                    localStorage.setItem('refreshToken', data.tokens.refresh);
+                    localStorage.setItem('currentUser', JSON.stringify(data.user));
+                    
+                    updateNavigation();
+                    showSection(sectionHome);
+                    loadStats();
+                    showMessage('Login realizado com sucesso!');
+                } else {
+                    throw new Error(data.message || 'Erro no login');
+                }
+            } catch (error) {
+                showMessage(error.message, 'error');
+            }
+        }
+
+        async function register(userData) {
+            try {
+                const response = await fetch('/api/auth/register/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(userData)
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    currentUser = data.user;
+                    localStorage.setItem('authToken', data.tokens.access);
+                    localStorage.setItem('refreshToken', data.tokens.refresh);
+                    localStorage.setItem('currentUser', JSON.stringify(data.user));
+                    
+                    updateNavigation();
+                    showSection(sectionHome);
+                    loadStats();
+                    showMessage('Conta criada com sucesso!');
+                } else {
+                    throw new Error(Object.values(data).flat().join(', '));
+                }
+            } catch (error) {
+                showMessage(error.message, 'error');
+            }
+        }
+
+        function logout() {
+            currentUser = null;
+            localStorage.removeItem('authToken');
+            localStorage.removeItem('refreshToken');
+            localStorage.removeItem('currentUser');
+            
+            updateNavigation();
+            showSection(sectionLogin);
+            showMessage('Logout realizado com sucesso!');
+        }
+
+        function checkAuthStatus() {
+            const token = localStorage.getItem('authToken');
+            const userData = localStorage.getItem('currentUser');
+            
+            if (token && userData) {
+                currentUser = JSON.parse(userData);
+                updateNavigation();
+                showSection(sectionHome);
+                loadStats();
+            } else {
+                updateNavigation();
+                showSection(sectionLogin);
+            }
+        }
+
+        // Event Listeners para autenticação
+        formLogin.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(formLogin);
+            await login(formData.get('username'), formData.get('password'));
+        });
+
+        formRegister.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(formRegister);
+            
+            const userData = {
+                username: formData.get('username'),
+                email: formData.get('email'),
+                first_name: formData.get('first_name'),
+                last_name: formData.get('last_name'),
+                password: formData.get('password'),
+                password_confirm: formData.get('password_confirm')
+            };
+            
+            await register(userData);
+        });
+
+        linkRegister.addEventListener('click', (e) => {
+            e.preventDefault();
+            showSection(sectionRegister);
+        });
+
+        linkLogin.addEventListener('click', (e) => {
+            e.preventDefault();
+            showSection(sectionLogin);
+        });
+
+        // Funções para grávidas (atualizadas com autenticação)
+        async function loadStats() {
+            try {
+                const gravidasResponse = await makeAuthenticatedRequest('/api/v2/gravidas/');
+                const gravidas = await gravidasResponse.json();
+                
+                let totalConsultas = 0;
+                let totalExames = 0;
+                
+                for (const gravida of gravidas) {
+                    const consultasResponse = await makeAuthenticatedRequest(`/api/v2/gravidas/${gravida.id}/consultas/`);
+                    const consultas = await consultasResponse.json();
+                    totalConsultas += consultas.length;
+                    
+                    const examesResponse = await makeAuthenticatedRequest(`/api/v2/gravidas/${gravida.id}/exames/`);
+                    const exames = await examesResponse.json();
+                    totalExames += exames.length;
+                }
+                
+                document.getElementById('stats-gravidas').textContent = gravidas.length;
+                document.getElementById('stats-consultas').textContent = totalConsultas;
+                document.getElementById('stats-exames').textContent = totalExames;
+                
+                const welcomeMessage = document.getElementById('welcome-message');
+                if (currentUser) {
+                    welcomeMessage.textContent = `Olá, ${currentUser.first_name || currentUser.username}! Gerencie sua caderneta digital`;
+                }
+            } catch (error) {
+                console.error('Erro ao carregar estatísticas:', error);
+            }
+        }
+
+        async function loadGravidas() {
+            try {
+                const response = await makeAuthenticatedRequest('/api/v2/gravidas/');
+                const gravidas = await response.json();
+                
+                gravidasList.innerHTML = '';
+                
+                if (gravidas.length === 0) {
+                    gravidasList.innerHTML = `
+                        <tr>
+                            <td colspan="5" class="py-8 text-center text-gray-500">
+                                <i class="fas fa-users text-4xl mb-4 block"></i>
+                                Nenhuma grávida cadastrada ainda
+                            </td>
+                        </tr>
+                    `;
+                    return;
+                }
+                
+                gravidas.forEach(gravida => {
+                    const row = document.createElement('tr');
+                    row.className = 'hover:bg-gray-50 transition';
+                    row.innerHTML = `
+                        <td class="py-4 px-4">
+                            <div class="flex items-center">
+                                <i class="fas fa-user-circle text-maternal text-xl mr-3"></i>
+                                <span class="font-medium">${gravida.nome}</span>
+                            </div>
+                        </td>
+                        <td class="py-4 px-4 text-gray-600">${gravida.cpf}</td>
+                        <td class="py-4 px-4 text-gray-600">${formatDate(gravida.data_ultima_menstruacao)}</td>
+                        <td class="py-4 px-4 text-gray-600">${formatDate(gravida.data_provavel_parto)}</td>
+                        <td class="py-4 px-4">
+                            <div class="flex space-x-2">
+                                <button class="text-blue-500 hover:text-blue-700 transition view-gravida" data-id="${gravida.id}">
+                                    <i class="fas fa-eye mr-1"></i>Ver
+                                </button>
+                                <button class="text-red-500 hover:text-red-700 transition delete-gravida" data-id="${gravida.id}">
+                                    <i class="fas fa-trash mr-1"></i>Excluir
+                                </button>
+                            </div>
+                        </td>
+                    `;
+                    gravidasList.appendChild(row);
+                });
+                
+                // Adicionar event listeners
+                document.querySelectorAll('.view-gravida').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const gravidaId = btn.getAttribute('data-id');
+                        viewGravida(gravidaId);
+                    });
+                });
+                
+                document.querySelectorAll('.delete-gravida').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const gravidaId = btn.getAttribute('data-id');
+                        deleteGravida(gravidaId);
+                    });
+                });
+            } catch (error) {
+                showMessage('Erro ao carregar grávidas: ' + error.message, 'error');
+            }
+        }
+
+        async function viewGravida(gravidaId) {
+            try {
+                currentGravidaId = gravidaId;
+                
+                const response = await makeAuthenticatedRequest(`/api/v2/gravidas/${gravidaId}/`);
+                const gravida = await response.json();
+                
+                const detalhesGravida = document.getElementById('detalhes-gravida');
+                detalhesGravida.innerHTML = `
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <p class="text-sm text-gray-500 mb-1"><i class="fas fa-user mr-2"></i>Nome</p>
+                            <p class="font-medium text-lg">${gravida.nome}</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <p class="text-sm text-gray-500 mb-1"><i class="fas fa-id-card mr-2"></i>Número do BI</p>
+                            <p class="font-medium">${gravida.cpf}</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <p class="text-sm text-gray-500 mb-1"><i class="fas fa-birthday-cake mr-2"></i>Data de Nascimento</p>
+                            <p class="font-medium">${formatDate(gravida.data_nascimento)}</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <p class="text-sm text-gray-500 mb-1"><i class="fas fa-calendar-alt mr-2"></i>Última Menstruação</p>
+                            <p class="font-medium">${formatDate(gravida.data_ultima_menstruacao)}</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <p class="text-sm text-gray-500 mb-1"><i class="fas fa-baby mr-2"></i>Provável Parto</p>
+                            <p class="font-medium text-maternal">${formatDate(gravida.data_provavel_parto)}</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <p class="text-sm text-gray-500 mb-1"><i class="fas fa-phone mr-2"></i>Telefone</p>
+                            <p class="font-medium">${gravida.telefone}</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg md:col-span-2">
+                            <p class="text-sm text-gray-500 mb-1"><i class="fas fa-envelope mr-2"></i>E-mail</p>
+                            <p class="font-medium">${gravida.email || '-'}</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg md:col-span-3">
+                            <p class="text-sm text-gray-500 mb-1"><i class="fas fa-map-marker-alt mr-2"></i>Endereço</p>
+                            <p class="font-medium">${gravida.endereco}</p>
+                        </div>
+                    </div>
+                `;
+                
+                await loadConsultas(gravidaId);
+                await loadExames(gravidaId);
+                
+                showSection(sectionDetalhes);
+            } catch (error) {
+                showMessage('Erro ao carregar detalhes: ' + error.message, 'error');
+            }
+        }
+
+        async function loadConsultas(gravidaId) {
+            try {
+                const response = await makeAuthenticatedRequest(`/api/v2/gravidas/${gravidaId}/consultas/`);
+                const consultas = await response.json();
+                
+                consultasList.innerHTML = '';
+                
+                if (consultas.length === 0) {
+                    consultasList.innerHTML = `
+                        <tr>
+                            <td colspan="5" class="py-6 text-center text-gray-500">
+                                <i class="fas fa-stethoscope text-2xl mb-2 block"></i>
+                                Nenhuma consulta registrada
+                            </td>
+                        </tr>
+                    `;
+                    return;
+                }
+                
+                consultas.forEach(consulta => {
+                    const row = document.createElement('tr');
+                    row.className = 'hover:bg-gray-50 transition';
+                    row.innerHTML = `
+                        <td class="py-3 px-4">${formatDate(consulta.data)}</td>
+                        <td class="py-3 px-4">${consulta.local}</td>
+                        <td class="py-3 px-4">${consulta.profissional}</td>
+                        <td class="py-3 px-4">${consulta.peso} kg</td>
+                        <td class="py-3 px-4">${consulta.pressao_arterial}</td>
+                    `;
+                    consultasList.appendChild(row);
+                });
+            } catch (error) {
+                console.error('Erro ao carregar consultas:', error);
+            }
+        }
+
+        async function loadExames(gravidaId) {
+            try {
+                const response = await makeAuthenticatedRequest(`/api/v2/gravidas/${gravidaId}/exames/`);
+                const exames = await response.json();
+                
+                examesList.innerHTML = '';
+                
+                if (exames.length === 0) {
+                    examesList.innerHTML = `
+                        <tr>
+                            <td colspan="3" class="py-6 text-center text-gray-500">
+                                <i class="fas fa-flask text-2xl mb-2 block"></i>
+                                Nenhum exame registrado
+                            </td>
+                        </tr>
+                    `;
+                    return;
+                }
+                
+                exames.forEach(exame => {
+                    const row = document.createElement('tr');
+                    row.className = 'hover:bg-gray-50 transition';
+                    row.innerHTML = `
+                        <td class="py-3 px-4">${formatDate(exame.data)}</td>
+                        <td class="py-3 px-4">${exame.tipo}</td>
+                        <td class="py-3 px-4">${exame.resultado}</td>
+                    `;
+                    examesList.appendChild(row);
+                });
+            } catch (error) {
+                console.error('Erro ao carregar exames:', error);
+            }
+        }
+
+        async function deleteGravida(gravidaId) {
+            if (confirm('Tem certeza que deseja excluir esta grávida?')) {
+                try {
+                    const response = await makeAuthenticatedRequest(`/api/v2/gravidas/${gravidaId}/`, {
+                        method: 'DELETE'
+                    });
+                    
+                    if (response.ok) {
+                        showMessage('Grávida excluída com sucesso!');
+                        loadGravidas();
+                        loadStats();
+                    } else {
+                        throw new Error('Erro ao excluir grávida');
+                    }
+                } catch (error) {
+                    showMessage('Erro ao excluir grávida: ' + error.message, 'error');
+                }
+            }
+        }
+
+        // Event Listeners para navegação e formulários
+        if (btnCadastrar) {
+            btnCadastrar.addEventListener('click', () => {
+                showSection(sectionCadastro);
+            });
+        }
+
+        if (btnNovaGravida) {
+            btnNovaGravida.addEventListener('click', () => {
+                showSection(sectionCadastro);
+            });
+        }
+
+        if (btnCancelarCadastro) {
+            btnCancelarCadastro.addEventListener('click', () => {
+                formGravida.reset();
+                showSection(sectionGravidas);
+            });
+        }
+
+        if (btnVoltarLista) {
+            btnVoltarLista.addEventListener('click', () => {
+                showSection(sectionGravidas);
+                loadGravidas();
+            });
+        }
+
+        // Formulário de cadastro de grávida
+        if (formGravida) {
+            formGravida.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const formData = new FormData(formGravida);
+                const gravidaData = {
+                    nome: formData.get('nome'),
+                    cpf: formData.get('cpf'),
+                    data_nascimento: formData.get('data_nascimento'),
+                    data_ultima_menstruacao: formData.get('data_ultima_menstruacao'),
+                    telefone: formData.get('telefone'),
+                    email: formData.get('email'),
+                    endereco: formData.get('endereco')
+                };
+                
+                try {
+                    const response = await makeAuthenticatedRequest('/api/v2/gravidas/', {
+                        method: 'POST',
+                        body: JSON.stringify(gravidaData)
+                    });
+                    
+                    if (response.ok) {
+                        formGravida.reset();
+                        showMessage('Grávida cadastrada com sucesso!');
+                        showSection(sectionGravidas);
+                        loadGravidas();
+                        loadStats();
+                    } else {
+                        const error = await response.json();
+                        throw new Error(Object.values(error).flat().join(', '));
+                    }
+                } catch (error) {
+                    showMessage('Erro ao cadastrar grávida: ' + error.message, 'error');
+                }
+            });
+        }
+
+        // Funções auxiliares
+        function formatDate(dateString) {
+            if (!dateString) return '-';
+            
+            const date = new Date(dateString);
+            return date.toLocaleDateString('pt-BR');
+        }
+
+        // Funções de Relatórios
+        let chartsInstances = {};
+
+        async function loadRelatorios() {
+            try {
+                await loadEstatisticasGerais();
+                await loadPartosProximos();
+                await initializeCharts();
+                setupRelatoriosEventListeners();
+            } catch (error) {
+                console.error('Erro ao carregar relatórios:', error);
+                showMessage('Erro ao carregar relatórios: ' + error.message, 'error');
+            }
+        }
+
+        async function loadEstatisticasGerais() {
+            try {
+                const response = await makeAuthenticatedRequest('/api/relatorios/estatisticas-gerais/');
+                if (response.ok) {
+                    const data = await response.json();
+                    
+                    // Atualizar cards de estatísticas
+                    document.getElementById('rel-total-gravidas').textContent = data.estatisticas_gerais.total_gravidas;
+                    document.getElementById('rel-total-consultas').textContent = data.estatisticas_gerais.total_consultas;
+                    document.getElementById('rel-total-exames').textContent = data.estatisticas_gerais.total_exames;
+                    document.getElementById('rel-partos-proximos').textContent = data.estatisticas_gerais.partos_proximos_30_dias;
+                    
+                    // Armazenar dados para gráficos
+                    window.relatoriosData = data;
+                }
+            } catch (error) {
+                console.error('Erro ao carregar estatísticas gerais:', error);
+            }
+        }
+
+        async function loadPartosProximos() {
+            try {
+                const response = await makeAuthenticatedRequest('/api/relatorios/partos-proximos/');
+                if (response.ok) {
+                    const data = await response.json();
+                    const lista = document.getElementById('lista-partos-proximos');
+                    
+                    if (data.lista_completa.length === 0) {
+                        lista.innerHTML = '<p class="text-gray-500 text-center">Nenhum parto previsto para os próximos 30 dias</p>';
+                    } else {
+                        lista.innerHTML = data.lista_completa.map(parto => `
+                            <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                                <div>
+                                    <p class="font-medium text-gray-800">${parto.nome}</p>
+                                    <p class="text-sm text-gray-600">
+                                        <i class="fas fa-calendar mr-1"></i>
+                                        ${formatDate(parto.data_provavel_parto)}
+                                    </p>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-sm font-medium ${parto.dias_para_parto <= 7 ? 'text-red-600' : 'text-green-600'}">
+                                        ${parto.dias_para_parto} dias
+                                    </span>
+                                </div>
+                            </div>
+                        `).join('');
+                    }
+                }
+            } catch (error) {
+                console.error('Erro ao carregar partos próximos:', error);
+            }
+        }
+
+        async function initializeCharts() {
+            if (!window.relatoriosData) return;
+            
+            const data = window.relatoriosData;
+            
+            // Destruir gráficos existentes
+            Object.values(chartsInstances).forEach(chart => chart.destroy());
+            chartsInstances = {};
+            
+            // Gráfico de Grávidas por Mês
+            const ctxGravidas = document.getElementById('chart-gravidas-mes').getContext('2d');
+            chartsInstances.gravidas = new Chart(ctxGravidas, {
+                type: 'line',
+                data: {
+                    labels: data.tendencias.gravidas_por_mes.map(item => item.mes),
+                    datasets: [{
+                        label: 'Grávidas Cadastradas',
+                        data: data.tendencias.gravidas_por_mes.map(item => item.total),
+                        borderColor: '#FF69B4',
+                        backgroundColor: 'rgba(255, 105, 180, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            
+            // Gráfico de Consultas por Mês
+            const ctxConsultas = document.getElementById('chart-consultas-mes').getContext('2d');
+            chartsInstances.consultas = new Chart(ctxConsultas, {
+                type: 'bar',
+                data: {
+                    labels: data.tendencias.consultas_por_mes.map(item => item.mes),
+                    datasets: [{
+                        label: 'Consultas Realizadas',
+                        data: data.tendencias.consultas_por_mes.map(item => item.total),
+                        backgroundColor: 'rgba(147, 51, 234, 0.8)',
+                        borderColor: '#9333EA',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            
+            // Gráfico de Tipos de Exames
+            const ctxExames = document.getElementById('chart-tipos-exames').getContext('2d');
+            const tiposExames = data.tipos_exames_mais_comuns.slice(0, 5); // Top 5
+            chartsInstances.exames = new Chart(ctxExames, {
+                type: 'doughnut',
+                data: {
+                    labels: tiposExames.map(item => item.tipo),
+                    datasets: [{
+                        data: tiposExames.map(item => item.total),
+                        backgroundColor: [
+                            '#3B82F6',
+                            '#10B981',
+                            '#F59E0B',
+                            '#EF4444',
+                            '#8B5CF6'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+        }
+
+        function setupRelatoriosEventListeners() {
+            // Filtro de período
+            document.getElementById('btn-aplicar-filtro').addEventListener('click', async () => {
+                const dataInicio = document.getElementById('filtro-data-inicio').value;
+                const dataFim = document.getElementById('filtro-data-fim').value;
+                
+                if (dataInicio && dataFim) {
+                    await loadRelatoriosPorPeriodo(dataInicio, dataFim);
+                } else {
+                    showMessage('Por favor, selecione as datas de início e fim', 'error');
+                }
+            });
+            
+            // Botões de relatórios detalhados
+            document.getElementById('btn-rel-gravidas').addEventListener('click', () => {
+                showRelatorioDetalhado('gravidas');
+            });
+            
+            document.getElementById('btn-rel-consultas').addEventListener('click', () => {
+                showRelatorioDetalhado('consultas');
+            });
+            
+            document.getElementById('btn-rel-exames').addEventListener('click', () => {
+                showRelatorioDetalhado('exames');
+            });
+        }
+
+        async function loadRelatoriosPorPeriodo(dataInicio, dataFim) {
+            try {
+                const params = new URLSearchParams({ data_inicio: dataInicio, data_fim: dataFim });
+                const response = await makeAuthenticatedRequest(`/api/relatorios/gravidas-por-periodo/?${params}`);
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    showMessage(`Relatório carregado: ${data.estatisticas.total_gravidas} grávidas no período`);
+                    // Aqui você pode atualizar os gráficos com os dados filtrados
+                }
+            } catch (error) {
+                showMessage('Erro ao carregar relatório por período: ' + error.message, 'error');
+            }
+        }
+
+        function showRelatorioDetalhado(tipo) {
+            // Implementar modal ou nova seção para relatórios detalhados
+            showMessage(`Relatório detalhado de ${tipo} em desenvolvimento`, 'info');
+        }
+
+        // Funções da Página da Grávida
+        async function loadPaginaGravida() {
+            try {
+                const response = await makeAuthenticatedRequest('/api/pagina-gravida/dashboard/');
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    updateDashboardGravida(data);
+                    setupPaginaGravidaEventListeners();
+                } else {
+                    showMessage('Erro ao carregar página da grávida', 'error');
+                }
+            } catch (error) {
+                showMessage('Erro ao carregar página da grávida: ' + error.message, 'error');
+            }
+        }
+
+        function updateDashboardGravida(data) {
+            // Atualizar informações da gestação
+            document.getElementById('semanas-gestacao').textContent = data.semanas_gestacao || '--';
+            document.getElementById('data-provavel-parto').textContent = data.data_provavel_parto || '--';
+            document.getElementById('proxima-consulta').textContent = data.proxima_consulta || 'Nenhuma agendada';
+            
+            // Atualizar estatísticas
+            document.getElementById('total-consultas-agendadas').textContent = data.total_consultas_agendadas || 0;
+            document.getElementById('lembretes-pendentes').textContent = data.lembretes_pendentes || 0;
+            document.getElementById('total-controles').textContent = data.total_controles || 0;
+            document.getElementById('consultas-semana').textContent = data.consultas_semana || 0;
+        }
+
+        function setupPaginaGravidaEventListeners() {
+            // Navegação entre abas
+            document.getElementById('tab-calendario').addEventListener('click', () => {
+                showTab('calendario');
+                loadConsultasAgendadas();
+            });
+            
+            document.getElementById('tab-controles').addEventListener('click', () => {
+                showTab('controles');
+                loadControlesGestacao();
+            });
+            
+            document.getElementById('tab-lembretes').addEventListener('click', () => {
+                showTab('lembretes');
+                loadLembretes();
+            });
+            
+            // Botões de ação
+            document.getElementById('btn-nova-consulta').addEventListener('click', () => {
+                showFormConsulta();
+            });
+            
+            document.getElementById('btn-novo-controle').addEventListener('click', () => {
+                showFormControle();
+            });
+            
+            document.getElementById('btn-novo-lembrete').addEventListener('click', () => {
+                showFormLembrete();
+            });
+            
+            document.getElementById('btn-voltar-admin').addEventListener('click', () => {
+                showSection(sectionHome);
+                loadStats();
+            });
+        }
+
+        function showTab(tabName) {
+            // Atualizar botões das abas
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('border-maternal', 'text-maternal');
+                btn.classList.add('border-transparent', 'text-gray-500');
+            });
+            
+            document.getElementById(`tab-${tabName}`).classList.remove('border-transparent', 'text-gray-500');
+            document.getElementById(`tab-${tabName}`).classList.add('border-maternal', 'text-maternal');
+            
+            // Mostrar conteúdo da aba
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+            
+            document.getElementById(`content-${tabName}`).classList.remove('hidden');
+        }
+
+        async function loadConsultasAgendadas() {
+            try {
+                const response = await makeAuthenticatedRequest('/api/pagina-gravida/consultas/');
+                
+                if (response.ok) {
+                    const consultas = await response.json();
+                    renderConsultasAgendadas(consultas);
+                }
+            } catch (error) {
+                showMessage('Erro ao carregar consultas: ' + error.message, 'error');
+            }
+        }
+
+        function renderConsultasAgendadas(consultas) {
+            const container = document.getElementById('lista-consultas');
+            
+            if (consultas.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-8 text-gray-500">
+                        <i class="fas fa-calendar-times text-4xl mb-4"></i>
+                        <p>Nenhuma consulta agendada</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = consultas.map(consulta => `
+                <div class="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition">
+                    <div class="flex justify-between items-start">
+                        <div class="flex-1">
+                            <h4 class="font-bold text-gray-800">${consulta.titulo}</h4>
+                            <p class="text-sm text-gray-600 mt-1">
+                                <i class="fas fa-calendar mr-2"></i>${formatDate(consulta.data_consulta)}
+                            </p>
+                            <p class="text-sm text-gray-600">
+                                <i class="fas fa-clock mr-2"></i>${consulta.horario || 'Horário não definido'}
+                            </p>
+                            <p class="text-sm text-gray-600">
+                                <i class="fas fa-map-marker-alt mr-2"></i>${consulta.local || 'Local não definido'}
+                            </p>
+                            <p class="text-sm text-gray-600">
+                                <i class="fas fa-user-md mr-2"></i>${consulta.profissional || 'Profissional não definido'}
+                            </p>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="px-2 py-1 text-xs rounded-full ${getStatusColor(consulta.status)}">
+                                ${consulta.status}
+                            </span>
+                            <button onclick="editarConsulta(${consulta.id})" class="text-blue-500 hover:text-blue-700">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        async function loadControlesGestacao() {
+            try {
+                const response = await makeAuthenticatedRequest('/api/pagina-gravida/controles/');
+                
+                if (response.ok) {
+                    const controles = await response.json();
+                    renderControlesGestacao(controles);
+                }
+            } catch (error) {
+                showMessage('Erro ao carregar controles: ' + error.message, 'error');
+            }
+        }
+
+        function renderControlesGestacao(controles) {
+            const container = document.getElementById('lista-controles');
+            
+            if (controles.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-8 text-gray-500">
+                        <i class="fas fa-notes-medical text-4xl mb-4"></i>
+                        <p>Nenhum registro de controle</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = controles.map(controle => `
+                <div class="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition">
+                    <div class="flex justify-between items-start">
+                        <div class="flex-1">
+                            <div class="flex items-center mb-2">
+                                <h4 class="font-bold text-gray-800">${controle.titulo}</h4>
+                                ${controle.importante ? '<i class="fas fa-star text-yellow-500 ml-2"></i>' : ''}
+                            </div>
+                            <p class="text-sm text-gray-600 mb-2">
+                                <i class="fas fa-calendar mr-2"></i>${formatDate(controle.data_registro)}
+                            </p>
+                            <p class="text-sm text-gray-600 mb-2">
+                                <i class="fas fa-tag mr-2"></i>${getTipoControleLabel(controle.tipo_registro)}
+                            </p>
+                            <p class="text-sm text-gray-700">${controle.descricao}</p>
+                            ${controle.valor ? `<p class="text-sm font-medium text-gray-800 mt-1">Valor: ${controle.valor}</p>` : ''}
+                        </div>
+                        <button onclick="editarControle(${controle.id})" class="text-blue-500 hover:text-blue-700">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        async function loadLembretes() {
+            try {
+                const response = await makeAuthenticatedRequest('/api/pagina-gravida/lembretes/');
+                
+                if (response.ok) {
+                    const lembretes = await response.json();
+                    renderLembretes(lembretes);
+                }
+            } catch (error) {
+                showMessage('Erro ao carregar lembretes: ' + error.message, 'error');
+            }
+        }
+
+        function renderLembretes(lembretes) {
+            const container = document.getElementById('lista-lembretes');
+            
+            if (lembretes.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-8 text-gray-500">
+                        <i class="fas fa-bell-slash text-4xl mb-4"></i>
+                        <p>Nenhum lembrete criado</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = lembretes.map(lembrete => `
+                <div class="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition ${lembrete.concluido ? 'opacity-60' : ''}">
+                    <div class="flex justify-between items-start">
+                        <div class="flex-1">
+                            <div class="flex items-center mb-2">
+                                <h4 class="font-bold text-gray-800 ${lembrete.concluido ? 'line-through' : ''}">${lembrete.titulo}</h4>
+                                <span class="ml-2 px-2 py-1 text-xs rounded-full ${getTipoLembreteColor(lembrete.tipo_lembrete)}">
+                                    ${getTipoLembreteLabel(lembrete.tipo_lembrete)}
+                                </span>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-2">
+                                <i class="fas fa-calendar mr-2"></i>${formatDate(lembrete.data_lembrete)}
+                            </p>
+                            <p class="text-sm text-gray-700">${lembrete.descricao}</p>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="toggleLembrete(${lembrete.id})" class="text-green-500 hover:text-green-700">
+                                <i class="fas fa-${lembrete.concluido ? 'undo' : 'check'}"></i>
+                            </button>
+                            <button onclick="editarLembrete(${lembrete.id})" class="text-blue-500 hover:text-blue-700">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Funções auxiliares para a página da grávida
+        function getStatusColor(status) {
+            const colors = {
+                'agendada': 'bg-blue-100 text-blue-800',
+                'confirmada': 'bg-green-100 text-green-800',
+                'realizada': 'bg-gray-100 text-gray-800',
+                'cancelada': 'bg-red-100 text-red-800'
+            };
+            return colors[status] || 'bg-gray-100 text-gray-800';
+        }
+
+        function getTipoControleLabel(tipo) {
+            const labels = {
+                'peso': 'Peso',
+                'pressao': 'Pressão Arterial',
+                'sintomas': 'Sintomas',
+                'medicamentos': 'Medicamentos',
+                'alimentacao': 'Alimentação',
+                'exercicios': 'Exercícios',
+                'humor': 'Humor/Bem-estar',
+                'movimento_fetal': 'Movimento Fetal',
+                'outros': 'Outros'
+            };
+            return labels[tipo] || tipo;
+        }
+
+        function getTipoLembreteLabel(tipo) {
+            const labels = {
+                'consulta': 'Consulta',
+                'medicamento': 'Medicamento',
+                'exame': 'Exame',
+                'exercicio': 'Exercício',
+                'alimentacao': 'Alimentação',
+                'outros': 'Outros'
+            };
+            return labels[tipo] || tipo;
+        }
+
+        function getTipoLembreteColor(tipo) {
+            const colors = {
+                'consulta': 'bg-blue-100 text-blue-800',
+                'medicamento': 'bg-green-100 text-green-800',
+                'exame': 'bg-purple-100 text-purple-800',
+                'exercicio': 'bg-orange-100 text-orange-800',
+                'alimentacao': 'bg-yellow-100 text-yellow-800',
+                'outros': 'bg-gray-100 text-gray-800'
+            };
+            return colors[tipo] || 'bg-gray-100 text-gray-800';
+        }
+
+        function showFormConsulta() {
+            showMessage('Formulário de nova consulta em desenvolvimento', 'info');
+        }
+
+        function showFormControle() {
+            showMessage('Formulário de novo controle em desenvolvimento', 'info');
+        }
+
+        function showFormLembrete() {
+            showMessage('Formulário de novo lembrete em desenvolvimento', 'info');
+        }
+
+        function editarConsulta(id) {
+            showMessage(`Editar consulta ${id} em desenvolvimento`, 'info');
+        }
+
+        function editarControle(id) {
+            showMessage(`Editar controle ${id} em desenvolvimento`, 'info');
+        }
+
+        function editarLembrete(id) {
+            showMessage(`Editar lembrete ${id} em desenvolvimento`, 'info');
+        }
+
+        function toggleLembrete(id) {
+            showMessage(`Toggle lembrete ${id} em desenvolvimento`, 'info');
+        }
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', () => {
+            checkAuthStatus();
+        });
+    </script>
+</body>
+</html>
+
